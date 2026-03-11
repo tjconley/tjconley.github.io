@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TJ Conley | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --scarlet: #cc0033;
+      --cream: #f5f0e8;
+      --gold: #c9a84c;
+      --light: #e8e4dc;
+      --muted: #7a7060;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(10,22,40,0.08);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 3px;
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--navy);
+      font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--scarlet); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      background: var(--navy);
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 4rem 5rem;
+      position: relative;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute; top: 0; right: -60px; bottom: 0;
+      width: 120px;
+      background: var(--navy);
+      clip-path: polygon(0 0, 0% 100%, 100% 100%);
+      z-index: 2;
+    }
+    .hero-tag {
+      font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-tag::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+    }
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 10vw, 9rem);
+      line-height: 0.9;
+      color: var(--cream);
+      letter-spacing: 2px;
+    }
+    .hero-name span { color: var(--scarlet); }
+    .hero-sub {
+      margin-top: 2rem;
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: rgba(245,240,232,0.6);
+      line-height: 1.6;
+      max-width: 340px;
+    }
+    .hero-cta {
+      margin-top: 3rem;
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;
+      transition: all 0.25s;
+    }
+    .btn-primary {
+      background: var(--scarlet); color: white;
+    }
+    .btn-primary:hover { background: #a80029; }
+    .btn-outline {
+      border: 1px solid rgba(245,240,232,0.4); color: var(--cream);
+    }
+    .btn-outline:hover { border-color: var(--cream); background: rgba(255,255,255,0.05); }
+
+    .hero-right {
+      background: var(--cream);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 5rem 5rem 7rem;
+      position: relative;
+    }
+    .stat-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem; color: var(--navy); line-height: 1;
+    }
+    .stat-num span { color: var(--scarlet); }
+    .stat-label {
+      font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted); margin-top: 0.4rem;
+    }
+    .hero-school {
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(10,22,40,0.1);
+    }
+    .hero-school p {
+      font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .hero-school h3 {
+      font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--navy);
+    }
+    .hero-photo-wrap {
+      position: absolute; top: 2rem; right: 3rem;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(10,22,40,0.25);
+    }
+    .hero-photo-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* ABOUT */
+    section { padding: 7rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--scarlet); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .section-label::after {
+      content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--scarlet);
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 1; color: var(--navy); letter-spacing: 1px;
+      margin-bottom: 3rem;
+    }
+
+    #about { background: var(--navy); color: var(--cream); }
+    #about .section-label { color: var(--gold); }
+    #about .section-label::after { background: var(--gold); }
+    #about .section-title { color: var(--cream); }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: start;
+    }
+    .about-text p {
+      font-size: 1.05rem; line-height: 1.85; color: rgba(245,240,232,0.75);
+      margin-bottom: 1.5rem;
+    }
+    .about-text p strong { color: var(--cream); font-weight: 500; }
+    .about-traits {
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .trait {
+      padding: 1.5rem;
+      border: 1px solid rgba(245,240,232,0.12);
+      border-left: 3px solid var(--gold);
+    }
+    .trait h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem; letter-spacing: 2px; color: var(--cream);
+      margin-bottom: 0.4rem;
+    }
+    .trait p { font-size: 0.85rem; color: rgba(245,240,232,0.55); line-height: 1.6; }
+
+    /* EXPERIENCE */
+    #experience { background: var(--cream); }
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid; grid-template-columns: 200px 1fr;
+      gap: 3rem; padding: 3rem 0;
+      border-bottom: 1px solid rgba(10,22,40,0.1);
+      position: relative;
+      animation: fadeUp 0.6s ease both;
+    }
+    .exp-item:first-child { border-top: 1px solid rgba(10,22,40,0.1); }
+    .exp-date {
+      font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted); padding-top: 0.4rem;
+    }
+    .exp-content h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem; letter-spacing: 1px; color: var(--navy);
+    }
+    .exp-content .exp-role {
+      font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--scarlet); margin: 0.3rem 0 1rem;
+    }
+    .exp-content ul {
+      list-style: none; display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .exp-content ul li {
+      font-size: 0.92rem; color: var(--muted); line-height: 1.6;
+      padding-left: 1.2rem; position: relative;
+    }
+    .exp-content ul li::before {
+      content: '—'; position: absolute; left: 0; color: var(--gold);
+    }
+
+    /* SKILLS */
+    #skills { background: var(--light); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+    .skill-card {
+      background: white; padding: 2.5rem;
+      transition: all 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .skill-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--scarlet); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .skill-card:hover::before { transform: scaleX(1); }
+    .skill-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(10,22,40,0.1); }
+    .skill-icon {
+      font-size: 2rem; margin-bottom: 1.2rem;
+    }
+    .skill-card h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem; letter-spacing: 1px; color: var(--navy);
+      margin-bottom: 0.8rem;
+    }
+    .skill-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    /* CONTACT */
+    #contact { background: var(--navy); }
+    #contact .section-label { color: var(--gold); }
+    #contact .section-label::after { background: var(--gold); }
+    #contact .section-title { color: var(--cream); }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+    }
+    .contact-info p {
+      font-size: 1.05rem; color: rgba(245,240,232,0.65); line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 1.2rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none; color: var(--cream);
+      font-size: 0.85rem; letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--gold); }
+    .contact-link-icon {
+      width: 40px; height: 40px; border: 1px solid rgba(245,240,232,0.2);
+      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group label {
+      font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+    }
+    .form-group input, .form-group textarea {
+      background: rgba(245,240,232,0.07);
+      border: 1px solid rgba(245,240,232,0.15);
+      color: var(--cream); padding: 0.9rem 1rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .btn-submit {
+      background: var(--scarlet); color: white; border: none;
+      padding: 1rem 2.5rem; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;
+      transition: background 0.2s; align-self: flex-start;
+    }
+    .btn-submit:hover { background: #a80029; }
+
+    /* FOOTER */
+    footer {
+      background: #060e1a; color: rgba(245,240,232,0.35);
+      text-align: center; padding: 2rem;
+      font-size: 0.75rem; letter-spacing: 1px;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ATHLETE BADGE */
+    .athlete-badge {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.6rem 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .athlete-badge span { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left::after { display: none; }
+      .hero-right { padding: 4rem 2rem; }
+      .hero-left { padding: 8rem 2rem 4rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .container { padding: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">TJ Conley</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <div class="athlete-badge">
+        <span>🥍</span>
+        <span>D1 Lacrosse · Rutgers University</span>
+      </div>
+      <div class="hero-tag">Portfolio</div>
+      <h1 class="hero-name">Thomas<br/><span>"TJ"</span><br/>Conley</h1>
+      <p class="hero-sub">Communications student, Division I athlete, coach, and entrepreneur building a brand that lasts.</p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo-wrap">
+        <img src="tj_photo.jpeg" alt="TJ Conley" />
+      </div>
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-num">20<span>+</span></div>
+          <div class="stat-label">Hours/week as a<br/>D1 student-athlete</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3<span>K</span></div>
+          <div class="stat-label">Lunches packed<br/>for families in need</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2027</div>
+          <div class="stat-label">Expected<br/>graduation</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1<span>st</span></div>
+          <div class="stat-label">Lacrosse brand<br/>I built from scratch</div>
+        </div>
+      </div>
+      <div class="hero-school">
+        <p>Currently studying at</p>
+        <h3>Rutgers Business School</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Athlete.<br/>Leader.<br/>Builder.</h2>
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <p>I'm TJ Conley — a <strong>Communications major with a Business Administration minor</strong> at Rutgers University, set to graduate in May 2027. I play lacrosse at the Division I level as a midfielder, which has taught me more about discipline, teamwork, and performance under pressure than any classroom ever could.</p>
+          <p>Outside of athletics, I've built businesses from the ground up, coached youth players, and managed people — all before turning 21. I bring the same competitive mindset to everything I do, whether it's on the field, in the workplace, or launching something new.</p>
+          <p>I'm looking to connect with organizations where <strong>drive, communication, and leadership</strong> are valued — and where I can keep growing.</p>
+          <a href="/cdn-cgi/l/email-protection#a0d4ca8ec3cfceccc5d994e0c7cdc1c9cc8ec3cfcd" class="btn btn-primary" style="margin-top:1rem; display:inline-block;">Let's Connect</a>
+        </div>
+        <div class="about-traits fade-in">
+          <div class="trait">
+            <h4>Discipline</h4>
+            <p>Balancing 20+ hours of D1 athletics weekly with a rigorous academic course load demands a level of time management most people never develop.</p>
+          </div>
+          <div class="trait">
+            <h4>Communication</h4>
+            <p>From coaching youth players to building community partnerships, I know how to get the right message to the right people.</p>
+          </div>
+          <div class="trait">
+            <h4>Entrepreneurship</h4>
+            <p>I built Sunday Knights Lacrosse from scratch — brand identity, field reservations, community outreach, and player acquisition. All on my own.</p>
+          </div>
+          <div class="trait">
+            <h4>Service</h4>
+            <p>I believe in giving back. Volunteering alongside 700+ fellow student-athletes to prepare thousands of meals reflects who I am beyond lacrosse.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label">Experience</div>
+      <h2 class="section-title">What I've<br/>Done.</h2>
+      <div class="exp-list">
+
+        <div class="exp-item fade-in">
+          <div class="exp-date">May 2024 – Present</div>
+          <div class="exp-content">
+            <h3>Sunday Knights Lacrosse</h3>
+            <div class="exp-role">Owner & Founder · Manlius, NY</div>
+            <ul>
+              <li>Built a lacrosse training brand promoting skill development drills for college-bound players</li>
+              <li>Coordinated directly with the Athletic Director to secure recurring field reservations</li>
+              <li>Partnered with the Town of Manlius to advertise the program and manage sign-ups publicly</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item fade-in">
+          <div class="exp-date">Sept. 2021 – Present</div>
+          <div class="exp-content">
+            <h3>Rutgers University Lacrosse</h3>
+            <div class="exp-role">Division I Midfielder · New Brunswick, NJ</div>
+            <ul>
+              <li>Commit 20+ hours per week to practices, competition, travel, and team development</li>
+              <li>Maintain academic standing while managing a high-performance athletic schedule</li>
+              <li>Represent Rutgers Athletics at community service events throughout the year</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item fade-in">
+          <div class="exp-date">Summer 2023 – Present</div>
+          <div class="exp-content">
+            <h3>FMYLA</h3>
+            <div class="exp-role">Head Coach · Manlius, NY</div>
+            <ul>
+              <li>Supervised and coached co-ed youth (ages 10–12) through structured training circuits</li>
+              <li>Led team-building exercises and individual reflection sessions to foster communication</li>
+              <li>Provided one-on-one instruction to players who needed additional support</li>
+              <li>Ensured all players received equal playing time and positional input</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item fade-in">
+          <div class="exp-date">Summer 2021 – Present</div>
+          <div class="exp-content">
+            <h3>Energy Gases</h3>
+            <div class="exp-role">Assistant · East Syracuse Minoa, NY</div>
+            <ul>
+              <li>Managed operational logistics for grill pickup, cleaning, and return service</li>
+              <li>Oversaw scheduling and hour management for fellow employees to maximize team efficiency</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item fade-in">
+          <div class="exp-date">Sep 2023</div>
+          <div class="exp-content">
+            <h3>Elijah's Promise</h3>
+            <div class="exp-role">Volunteer · New Brunswick, NJ</div>
+            <ul>
+              <li>Worked alongside 700+ student-athletes to prepare 3,000 lunch bags for food-insecure community members</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label">Skills</div>
+      <h2 class="section-title">What I<br/>Bring.</h2>
+    </div>
+    <div class="skills-grid" style="max-width:1200px; margin: 0 auto; padding: 0 4rem;">
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🎯</div>
+        <h4>Leadership</h4>
+        <p>From coaching youth athletes to managing a team's work schedule, I lead by showing up consistently and holding others to the same standard.</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🗣️</div>
+        <h4>Communication</h4>
+        <p>Studying communications at Rutgers Business School with coursework in Business Writing, HR, and Public Sector communication.</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">📋</div>
+        <h4>Organization</h4>
+        <p>Managing a D1 athletic schedule, coursework, and two ongoing jobs requires meticulous planning and prioritization every single day.</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🚀</div>
+        <h4>Entrepreneurship</h4>
+        <p>Founded and operate Sunday Knights Lacrosse — handling branding, logistics, community outreach, and partnerships independently.</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🤝</div>
+        <h4>Teamwork</h4>
+        <p>Years of competitive team sport have made collaboration and trust second nature — on and off the field.</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">📈</div>
+        <h4>Operations</h4>
+        <p>Employee scheduling, field time coordination, municipal outreach — I've handled real operational challenges with limited resources.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">Let's Talk.</h2>
+      <div class="contact-grid">
+        <div class="contact-info fade-in">
+          <p>Whether you're recruiting, coaching, collaborating, or just want to connect — I'm always open to a conversation. Reach out directly or find me on LinkedIn.</p>
+          <div class="contact-links">
+            <a href="tel:3155600885" class="contact-link">
+              <div class="contact-link-icon">📞</div>
+              315.560.0885
+            </a>
+            <a href="/cdn-cgi/l/email-protection#5f2b35713c3031333a266b1f38323e3633713c3032" class="contact-link">
+              <div class="contact-link-icon">✉️</div>
+              <span class="__cf_email__" data-cfemail="41352b6f222e2f2d24387501262c20282d6f222e2c">[email&#160;protected]</span>
+            </a>
+            <a href="https://www.linkedin.com/in/thomas-conley-08b81b2a2/" target="_blank" class="contact-link">
+              <div class="contact-link-icon">in</div>
+              LinkedIn Profile
+            </a>
+          </div>
+        </div>
+        <div class="fade-in">
+          <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="jane@example.com" required />
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="What's on your mind?" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Thomas "TJ" Conley · Rutgers University · New Brunswick, NJ</p>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Form handler
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.query
